@@ -1,9 +1,11 @@
+// controllers/cardController.js
 import Card from "../models/cardModel.js";
 
 // Create a new card (Business user only)
 export const createCard = async (req, res) => {
   try {
-    const card = new Card(req.body);
+    const cardData = { ...req.body, createdBy: req.user.id };
+    const card = new Card(cardData);
     await card.save();
     res.status(201).json(card);
   } catch (error) {
@@ -32,13 +34,13 @@ export const getCard = async (req, res) => {
   }
 };
 
-// Update a card (Card creator only)
+// Update a card (Card creator or admin only)
 export const updateCard = async (req, res) => {
   try {
     const card = await Card.findById(req.params.id);
     if (!card) return res.status(404).json({ error: "Card not found" });
 
-    if (card.creator.toString() !== req.user.id && !req.user.isAdmin) {
+    if (card.createdBy.toString() !== req.user.id && !req.user.isAdmin) {
       return res.status(403).json({ error: "User not authorized" });
     }
 
@@ -57,7 +59,7 @@ export const deleteCard = async (req, res) => {
     const card = await Card.findById(req.params.id);
     if (!card) return res.status(404).json({ error: "Card not found" });
 
-    if (card.creator.toString() !== req.user.id && !req.user.isAdmin) {
+    if (card.createdBy.toString() !== req.user.id && !req.user.isAdmin) {
       return res.status(403).json({ error: "User not authorized" });
     }
 

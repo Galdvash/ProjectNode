@@ -1,3 +1,4 @@
+// routes/cardRoutes.js
 import express from "express";
 import {
   createCard,
@@ -7,22 +8,18 @@ import {
   getUserCards,
 } from "../controllers/cardController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
+import businessMiddleware from "../middleware/businessMiddleware.js";
 
 const router = express.Router();
 
-// Create a new card (Business user only)
-router.post("/", authMiddleware, createCard);
+router.post("/", authMiddleware, businessMiddleware, createCard);
 
-// Get all cards (Public)
 router.get("/", getUserCards);
 
-// Get a specific card by ID (Public)
 router.get("/:id", getCard);
 
-// Update a card (Card creator only)
 router.put("/:id", authMiddleware, updateCard);
 
-// Delete a card (Card creator or Admin only)
 router.delete("/:id", authMiddleware, deleteCard);
 
 export default router;
