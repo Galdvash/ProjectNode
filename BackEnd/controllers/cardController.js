@@ -63,7 +63,7 @@ export const deleteCard = async (req, res) => {
       return res.status(403).json({ error: "User not authorized" });
     }
 
-    await card.remove();
+    await card.deleteOne();
     res.status(200).json({ message: "Card removed" });
   } catch (error) {
     res.status(500).json({ error: error.message });
