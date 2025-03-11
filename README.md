@@ -1,146 +1,151 @@
 # ProjectNode 🚀
 
-**ProjectNode** הוא פרויקט ניהול משתמשים וכרטיסים, הפותח עם Node.js, Express ו-MongoDB. הפרויקט מהווה מערכת לניהול משתמשים, שבה המשתמשים יכולים להירשם, להתחבר, לעדכן את הפרופיל שלהם וליצור כרטיסים (בשימוש עבור משתמשים עסקיים). בנוסף, קיימות הרשאות מיוחדות עבור מנהלים ומשתמשים עסקיים.
+**ProjectNode** is a user and card management project developed with Node.js, Express, and MongoDB. This project serves as a user management system where users can register, log in, update their profiles, and create cards (for business users). In addition, there are special permissions for admins and business users.
 
 ---
 
-## 📚 מבוא ומטרות
+## 📚 Introduction & Objectives
 
-בפרויקט זה נתרגל:
-- **פיתוח API REST:** בניית API REST חזק ואמין עם Node.js ו-MongoDB.
-- **ניהול משתמשים וכרטיסים:** מערכת לניהול משתמשים שמאפשרת הרשמה, התחברות, עדכון פרופיל וניהול כרטיסים עבור משתמשים עסקיים.
-- **אבטחה מתקדמת:** שימוש ב-JWT לאימות, bcryptjs להצפנת סיסמאות והגנה על נתונים.
-- **ארכיטקטורה מודולרית:** ארגון הקוד לקבצים ותיקיות באופן ברור ומודולרי המקל על תחזוקה והרחבה עתידית.
+In this project we will practice:
+- **REST API Development:** Building a robust and reliable REST API using Node.js and MongoDB.
+- **User and Card Management:** A system that allows user registration, login, profile updates, and card management for business users.
+- **Advanced Security:** Utilizing JWT for authentication, bcryptjs for password encryption, and data protection.
+- **Modular Architecture:** Organizing the code into clear, modular files and directories that facilitate maintenance and future expansion.
 
-> **מטרה:** לשלוט באמנות בניית API REST ולהראות את יכולות הניהול והאבטחה המתקדמות בעולם הפיתוח.
-
----
-
-## 🔧 טכנולוגיות וכלים
-
-- **Node.js** – סביבת ריצה עבור JavaScript לבניית יישומים סקלאביליים.
-- **Express.js** – מסגרת עבודה מהירה וגמישה לבניית API.
-- **MongoDB עם Mongoose** – מסד נתונים NoSQL המנוהל באמצעות Mongoose להגדרת סכמות ומודלים.
-- **JWT** – לאימות משתמשים.
-- **bcryptjs** – להצפנת סיסמאות.
-- **dotenv** – לניהול משתני סביבה.
-- **cors & morgan** – לניהול בקשות, לוגים ותמיכה בגישה בין-תחומית.
-- **Postman Collection:** קובץ ייצוא של Postman כלול בפרויקט לצורך בדיקת נקודות הקצה.
+> **Objective:** Master the art of building REST APIs while demonstrating advanced management and security capabilities in modern development.
 
 ---
 
-## 📁 מבנה הפרויקט
+## 🔧 Technologies & Tools
 
-- **קבצים ראשיים:**
-  - `app.js` – קובץ הכניסה הראשי ליישום.
-  - `package.json` – קובץ ניהול התלויות והסקריפטים.
+- **Node.js** – JavaScript runtime for building scalable applications.
+- **Express.js** – Fast and flexible framework for building APIs.
+- **MongoDB with Mongoose** – NoSQL database managed with Mongoose for defining schemas and models.
+- **JWT** – For user authentication.
+- **bcryptjs** – For password encryption.
+- **dotenv** – For managing environment variables.
+- **cors & morgan** – For handling requests, logging, and enabling cross-origin support.
+- **Postman Collection:** A Postman export file is included in the project for testing API endpoints.
 
-- **תיקיות ומודולים:**
+---
+
+## 📁 Project Structure
+
+- **Main Files:**
+  - `app.js` – The main entry point of the application.
+  - `package.json` – File for dependency management and scripts.
+
+- **Folders and Modules:**
   - **routes/**  
-    - `userRoutes.js` – נתיבים לניהול משתמשים.
-    - `cardRoutes.js` – נתיבים לניהול כרטיסים.
-    - `authRoutes.js` – נתיבים לאימות (רישום והתחברות).
+    - `userRoutes.js` – Routes for user management.
+    - `cardRoutes.js` – Routes for card management.
+    - `authRoutes.js` – Routes for authentication (registration and login).
   - **controllers/**  
-    - `authController.js` – בקר לטיפול ברישום והתחברות.
-    - `userController.js` – בקר לניהול משתמשים.
-    - `cardController.js` – בקר לניהול כרטיסים.
+    - `authController.js` – Controller for handling registration and login.
+    - `userController.js` – Controller for user management.
+    - `cardController.js` – Controller for card management.
   - **models/**  
-    - `userModel.js` – מודל המשתמש.
-    - `cardModel.js` – מודל הכרטיס.
+    - `userModel.js` – User model.
+    - `cardModel.js` – Card model.
   - **middleware/**  
-    - `authMiddleware.js` – מוודא שהמשתמש מחובר באמצעות JWT.
-    - `adminMiddleware.js` – מוודא שהמשתמש הוא מנהל.
-    - `businessMiddleware.js` – מוודא שהמשתמש הוא עסקי.
+    - `authMiddleware.js` – Ensures the user is authenticated via JWT.
+    - `adminMiddleware.js` – Ensures the user is an admin.
+    - `businessMiddleware.js` – Ensures the user is a business user.
     
 - **Postman Collection:**  
-  הקובץ `ProjectNode.postman_collection.json` (או שם דומה) נמצא בתיקייה הראשית ומשמש לבדיקה של נקודות הקצה.
+  The file `ProjectNode.postman_collection.json` (or a similarly named file) is included in the main directory for testing API endpoints.
 
-> *שימו לב:* תיקיית `node_modules` אינה כלולה במאגר.
+> *Note:* The `node_modules` directory is not included in the repository.
 
 ---
 
-## 🚀 התקנה והפעלה
+## 🚀 Installation & Running
 
-### דרישות מוקדמות
-- **Node.js ו-npm:** ודאו כי מותקנים גרסאות עדכניות.
-- **MongoDB:** יש להפעיל מופע MongoDB (לוקלי או בענן).
-- **Nodemon:** (אופציונלי) להקלה על פיתוח עם איתור שינויים אוטומטי.
+### Prerequisites
+- **Node.js & npm:** Make sure you have the latest stable versions installed.
+- **MongoDB:** A running instance of MongoDB (local or cloud).
+- **Nodemon:** (Optional) For ease of development with auto-restarting on changes.
 
-### שלבי ההתקנה
+### Installation Steps
 
-1. **שכפול המאגר:**
+1. **Clone the Repository:**
    ```bash
    git clone https://github.com/Galdvash/ProjectNode/tree/main/BackEnd
    cd BackEnd
-התקנת התלויות:
+Install Dependencies:
 
 bash
 Copy
 npm install
-הגדרת משתני סביבה:
-צרו קובץ .env (או השתמשו במשתני סביבה קיימים) עם התוכן הבא:
+Set Up Environment Variables:
+Create a .env file (or use existing environment variables) with the following content:
 
 ini
 Copy
 JWT_SECRET=YourJWTSecretKey
 MONGO_URI=mongodb://localhost:27017/NodeDataBase
 PORT=5000
-הרצת השרת:
+Run the Server:
 
 bash
 Copy
 nodemon app
-גישה ל-API:
-לאחר הרצת השרת, ניתן לגשת לכתובת http://localhost:5000 באמצעות דפדפן, Postman או כלי API אחר.
+Access the API:
+Once the server is running, you can access http://localhost:5000 using a browser, Postman, or another API testing tool.
 
-📋 נקודות קצה (API Endpoints)
-משתמשים (Users)
-הרשמה (Register):
+📋 API Endpoints
+Users
+Registration (Register):
 POST /users/register
-משתמשים יכולים להירשם עם פרטים אישיים. שדה isAdmin מוגדר אוטומטית כ-false כדי למנוע הרשאות מנהל.
+Users can register with personal details. The isAdmin field is automatically set to false to prevent admin permissions.
 
-התחברות (Login):
+Login:
 POST /users/login
-המשתמש מתחבר ומקבל טוקן לאימות.
+The user logs in and receives an authentication token.
 
-ניהול משתמשים (Admin בלבד):
+User Management (Admin Only):
 
-GET /users/ – קבלת רשימת כל המשתמשים.
-PUT /users/:id – עדכון פרטי משתמש.
-DELETE /users/:id – מחיקת משתמש.
-עדכון פרופיל אישי:
-PATCH /users/profile – עדכון פרופיל המשתמש (למעט שדות רגישים כמו isAdmin או isBusiness).
+GET /users/ – Retrieve a list of all registered users.
+PUT /users/:id – Update user details.
+DELETE /users/:id – Delete a user.
+Personal Profile Update:
+PATCH /users/profile – Update the user's profile (excluding sensitive fields such as isAdmin or isBusiness).
 
-כרטיסים (Cards)
-יצירת כרטיס חדש (עבור משתמשים עסקיים בלבד):
+Cards
+Create New Card (For Business Users Only):
 POST /cards/
-קבלת כל הכרטיסים:
+
+Get All Cards:
 GET /cards/
-ניהול כרטיס (עדכון ומחיקה):
-PUT /cards/:id / PATCH /cards/:id / DELETE /cards/:id – רק היוצר או מנהל רשאי לעדכן או למחוק כרטיס.
-🔒 אמצעי אבטחה
-JWT לאימות:
-כל נקודות הקצה המוגנות דורשות טוקן JWT תקף.
-הצפנת סיסמאות:
-שימוש ב-bcryptjs להצפנה מאובטחת של הסיסמאות.
-Middleware לאימות והרשאות:
-authMiddleware – מוודא שהמשתמש מחובר.
-adminMiddleware – מוודא שהמשתמש הוא מנהל.
-businessMiddleware – מוודא שהמשתמש הוא עסקי.
-📝 בדיקות ידניות
-ניתן לבדוק את ה-API באמצעות Postman או כלי דומה:
 
-הרשמה והתחברות:
-בצעו בקשת POST ל-/users/register עם הפרטים הנדרשים.
-התחברו עם בקשת POST ל-/users/login וקבלו טוקן.
-בדיקת נקודות קצה מוגנות:
-הוסיפו כותרת x-auth-token עם הטוקן שקיבלתם.
-בדקו נקודות קצה כגון /users/profile ו-/cards/.
-בדיקת הרשאות:
-נסו לגשת לנקודות קצה המוגנות למנהלים עם משתמש רגיל וודאו שהגישה נחסמת.
-📫 יצירת קשר
-לשאלות, הערות או בדיקות, ניתן לפנות אל: Email: galdvash59@gmail.com
+Card Management (Update and Delete):
+PUT /cards/:id / PATCH /cards/:id / DELETE /cards/:id – Only the creator or an admin is allowed to update or delete a card.
 
-ProjectNode פותח על ידי Gal Dvash. תודה על ההתעניינות ובהצלחה!
+🔒 Security Measures
+JWT for Authentication:
+All protected endpoints require a valid JWT token.
+Password Encryption:
+Secure password encryption is implemented using bcryptjs.
+Authentication and Authorization Middleware:
+authMiddleware – Ensures the user is authenticated.
+adminMiddleware – Ensures the user is an admin.
+businessMiddleware – Ensures the user is a business user.
+📝 Manual Testing
+You can test the API using Postman or a similar tool:
 
-Copy
+Registration and Login:
+
+Send a POST request to /users/register with the required details.
+Log in with a POST request to /users/login to receive a token.
+Testing Protected Endpoints:
+
+Add the header x-auth-token with the token you received.
+Test endpoints such as /users/profile and /cards/.
+Testing Permissions:
+
+Attempt to access admin-protected endpoints with a regular user and verify that access is denied.
+📫 Contact
+For questions, comments, or testing inquiries, please contact:
+Email: galdvash59@gmail.com
+
+ProjectNode is developed by Gal Dvash. Thank you for your interest and good luck!
