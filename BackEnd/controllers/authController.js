@@ -32,29 +32,25 @@ export const registerUser = async (req, res) => {
       password: hashedPassword,
       address,
       isBusiness,
-      isAdmin: false, // הגדרה ידנית ל-false
+      isAdmin: false,
       image,
     });
 
-    // שמירת המשתמש במסד הנתונים
     await user.save();
 
-    // יצירת טוקן JWT
     const token = jwt.sign(
       { id: user._id, isBusiness: user.isBusiness, isAdmin: user.isAdmin },
-      process.env.JWT_SECRET, // וודא ש-JWT_SECRET מוגדר בקובץ .env שלך
-      { expiresIn: "1h" } // הטוקן יפוג לאחר שעה
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
     );
 
-    // שליחת התשובה עם הטוקן שנוצר
     res.status(201).json({ token });
   } catch (error) {
-    console.log(error); // רישום השגיאה בקונסול
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
 
-// פונקציה להתחברות משתמש
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -77,7 +73,7 @@ export const loginUser = async (req, res) => {
 
     res.status(200).json({ token });
   } catch (error) {
-    console.log(error); // רישום השגיאה לקונסול
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };

@@ -1,17 +1,16 @@
 import mongoose from "mongoose";
-import chalk from "chalk"; // ייבוא Chalk
+import chalk from "chalk";
 import { User } from "./models/userModel.js";
 import { Card } from "./models/cardModel.js";
 import dotenv from "dotenv";
 
-dotenv.config(); // טעינת משתני סביבה מ-.env
+dotenv.config();
 
-// חיבור ל-MongoDB
 mongoose
   .connect(process.env.MONGO_URI || "mongodb://localhost:27017/NodeDataBase")
   .then(() => {
     console.log(chalk.green("MongoDB connected successfully!"));
-    createSeedData(); // הרצת פונקציית ה-seed לאחר החיבור
+    createSeedData();
   })
   .catch((error) => {
     console.error(chalk.red(`MongoDB connection error: ${error.message}`));

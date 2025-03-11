@@ -1,101 +1,77 @@
-Node.js Project - User and Card Management
-Project Description
+# ProjectNode 🚀
 
-This project is a user and card management system built with Node.js, Express, and MongoDB. The system allows users to register, log in, update their profiles, and create cards (for business users). Additionally, there are special permissions for admins and business users.
-Technologies and Languages
+**ProjectNode** הוא פרויקט ניהול משתמשים וכרטיסים, הפותח עם Node.js, Express ו-MongoDB. הפרויקט מהווה מערכת לניהול משתמשים, שבה המשתמשים יכולים להירשם, להתחבר, לעדכן את הפרופיל שלהם וליצור כרטיסים (בשימוש עבור משתמשים עסקיים). בנוסף, קיימות הרשאות מיוחדות עבור מנהלים ומשתמשים עסקיים.
 
-    Node.js
-    Express
-    MongoDB with Mongoose
-    JWT for user authentication
-    bcryptjs for password encryption
-    dotenv for environment variable management
-    cors and morgan for request handling and logging
+---
 
-Installation and Running
+## 📚 מבוא ומטרות
 
-1. Clone the repository:
+בפרויקט זה נתרגל:
 
-git clone https://github.com/Galdvash/ProjectNode/tree/main/BackEnd
-cd BackEnd
+- **פיתוח API REST:** בניית API REST חזק ואמין עם Node.js ו-MongoDB.
+- **ניהול משתמשים וכרטיסים:** מערכת לניהול משתמשים שמאפשרת הרשמה, התחברות, עדכון פרופיל וניהול כרטיסים עבור משתמשים עסקיים.
+- **אבטחה מתקדמת:** שימוש ב-JWT לאימות, bcryptjs להצפנת סיסמאות והגנה על נתונים.
+- **ארכיטקטורה מודולרית:** ארגון הקוד לקבצים ותיקיות באופן ברור ומודולרי המקל על תחזוקה והרחבה עתידית.
 
-2. Install dependencies:
+> **מטרה:** לשלוט באמנות בניית API REST ולהראות את יכולות הניהול והאבטחה המתקדמות בעולם הפיתוח.
 
-npm install
+---
 
-3. Set environment variables:
-   Create a .env file with the following content:
+## 🔧 טכנולוגיות וכלים
 
-JWT_SECRET=YourJWTSecretKey
-MONGO_URI=mongodb://localhost:27017/NodeDataBase
-PORT=5000
+- **Node.js** – סביבת ריצה עבור JavaScript לבניית יישומים סקלאביליים.
+- **Express.js** – מסגרת עבודה מהירה וגמישה לבניית API.
+- **MongoDB עם Mongoose** – מסד נתונים NoSQL המנוהל באמצעות Mongoose להגדרת סכמות ומודלים.
+- **JWT** – לאימות משתמשים.
+- **bcryptjs** – להצפנת סיסמאות.
+- **dotenv** – לניהול משתני סביבה.
+- **cors & morgan** – לניהול בקשות, לוגים ותמיכה בגישה בין-תחומית.
+- **Postman Collection:** קובץ ייצוא של Postman כלול בפרויקט לצורך בדיקת נקודות הקצה.
 
-4.Run the server:
-nodemon app
+---
 
-Project Structure
+## 📁 מבנה הפרויקט
 
-    app.js - The main entry point of the application.
-    routes/ - Contains all the route files.
-        userRoutes.js - User routes.
-        cardRoutes.js - Card routes.
-        authRoutes.js - Authentication routes.
-    controllers/ - Contains all the controller files.
-        authController.js - Controller for registration and login.
-        userController.js - Controller for user management.
-        cardController.js - Controller for card management.
-    models/ - Contains all the database models.
-        userModel.js - User model.
-        cardModel.js - Card model.
-    middleware/ - Contains authentication and authorization middleware.
-        authMiddleware.js - Middleware for JWT token authentication.
-        adminMiddleware.js - Middleware to check if the user is an admin.
-        businessMiddleware.js - Middleware to check if the user is a business user.
+- **קבצים ראשיים:**
 
-Main Features
-Registration and Login
+  - `app.js` – קובץ הכניסה הראשי ליישום.
+  - `package.json` – קובץ ניהול התלויות והסקריפטים.
 
-    Registration (/users/register): Users can register with personal details. Upon registration, the isAdmin field is automatically set to false to prevent users from becoming admins.
-    Login (/users/login): Users can log in and receive a JWT token for authentication.
+- **תיקיות ומודולים:**
+  - **routes/**
+    - `userRoutes.js` – נתיבים לניהול משתמשים.
+    - `cardRoutes.js` – נתיבים לניהול כרטיסים.
+    - `authRoutes.js` – נתיבים לאימות (רישום והתחברות).
+  - **controllers/**
+    - `authController.js` – בקר לטיפול ברישום והתחברות.
+    - `userController.js` – בקר לניהול משתמשים.
+    - `cardController.js` – בקר לניהול כרטיסים.
+  - **models/**
+    - `userModel.js` – מודל המשתמש.
+    - `cardModel.js` – מודל הכרטיס.
+  - **middleware/**
+    - `authMiddleware.js` – מוודא שהמשתמש מחובר באמצעות JWT.
+    - `adminMiddleware.js` – מוודא שהמשתמש הוא מנהל.
+    - `businessMiddleware.js` – מוודא שהמשתמש הוא עסקי.
+- **Postman Collection:**  
+  הקובץ `ProjectNode.postman_collection.json` (או שם דומה) נמצא בתיקייה הראשית ומשמש לבדיקה של נקודות הקצה.
 
-User Management
+> _שימו לב:_ תיקיית `node_modules` אינה כלולה במאגר.
 
-    Update Personal Profile (/users/profile): Users can update their profiles, except for sensitive fields like isAdmin and isBusiness.
-    User Management (Admin Only):
-        Get all users (/users/): Admins can retrieve a list of all users.
-        Update and delete users (/users/:id): Admins can update or delete any user.
+---
 
-Card Management
+## 🚀 התקנה והפעלה
 
-    Create a new card (/cards/): Business users can create new cards.
-    Get all cards (/cards/): Public route to retrieve all cards.
-    Update and delete cards (/cards/:id): Only the card creator or an admin can update or delete a card.
+### דרישות מוקדמות
 
-Security Measures
+- **Node.js ו-npm:** ודאו כי מותקנים גרסאות עדכניות.
+- **MongoDB:** יש להפעיל מופע MongoDB (לוקלי או בענן).
+- **Nodemon:** (אופציונלי) להקלה על פיתוח עם איתור שינויים אוטומטי.
 
-    Authentication using JWT: All protected routes require a valid JWT token.
-    Password encryption with bcryptjs: User passwords are encrypted and stored securely.
-    Authentication and Authorization Middleware:
-        authMiddleware - Ensures the user is authenticated.
-        adminMiddleware - Ensures the user is an admin.
-        businessMiddleware - Ensures the user is a business user.
+### שלבי ההתקנה
 
-Testing and Manual Checks
-
-You can test the API using Postman or a similar tool:
-
-    Registration and Login:
-        Make a POST request to /users/register with the required details.
-        Log in using POST to /users/login to receive a token.
-
-    Testing Protected Routes:
-        Add the header x-auth-token with the token you received.
-        Test routes like /users/profile, /cards/, etc.
-
-    Testing Permissions:
-        Try accessing admin-protected routes with a regular user and ensure access is denied.
-
-Important Notes
-
-    Security: We have implemented security measures to prevent users from becoming admins or changing their status.
-    Order of Routes in Express: We ensured that specific routes are defined before parameterized routes to avoid conflicts.
+1. **שכפול המאגר:**
+   ```bash
+   git clone https://github.com/Galdvash/ProjectNode/tree/main/BackEnd
+   cd BackEnd
+   ```
