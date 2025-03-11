@@ -74,4 +74,76 @@
    ```bash
    git clone https://github.com/Galdvash/ProjectNode/tree/main/BackEnd
    cd BackEnd
+   התקנת התלויות:
    ```
+
+bash
+Copy
+npm install
+הגדרת משתני סביבה:
+צרו קובץ .env (או השתמשו במשתני סביבה קיימים) עם התוכן הבא:
+
+ini
+Copy
+JWT_SECRET=YourJWTSecretKey
+MONGO_URI=mongodb://localhost:27017/NodeDataBase
+PORT=5000
+הרצת השרת:
+
+bash
+Copy
+nodemon app
+גישה ל-API:
+לאחר הרצת השרת, ניתן לגשת לכתובת http://localhost:5000 באמצעות דפדפן, Postman או כלי API אחר.
+
+📋 נקודות קצה (API Endpoints)
+משתמשים (Users)
+הרשמה (Register):
+POST /users/register
+משתמשים יכולים להירשם עם פרטים אישיים. שדה isAdmin מוגדר אוטומטית כ-false כדי למנוע הרשאות מנהל.
+
+התחברות (Login):
+POST /users/login
+המשתמש מתחבר ומקבל טוקן לאימות.
+
+ניהול משתמשים (Admin בלבד):
+
+GET /users/ – קבלת רשימת כל המשתמשים.
+PUT /users/:id – עדכון פרטי משתמש.
+DELETE /users/:id – מחיקת משתמש.
+עדכון פרופיל אישי:
+PATCH /users/profile – עדכון פרופיל המשתמש (למעט שדות רגישים כמו isAdmin או isBusiness).
+
+כרטיסים (Cards)
+יצירת כרטיס חדש (עבור משתמשים עסקיים בלבד):
+POST /cards/
+קבלת כל הכרטיסים:
+GET /cards/
+ניהול כרטיס (עדכון ומחיקה):
+PUT /cards/:id / PATCH /cards/:id / DELETE /cards/:id – רק היוצר או מנהל רשאי לעדכן או למחוק כרטיס.
+🔒 אמצעי אבטחה
+JWT לאימות:
+כל נקודות הקצה המוגנות דורשות טוקן JWT תקף.
+הצפנת סיסמאות:
+שימוש ב-bcryptjs להצפנה מאובטחת של הסיסמאות.
+Middleware לאימות והרשאות:
+authMiddleware – מוודא שהמשתמש מחובר.
+adminMiddleware – מוודא שהמשתמש הוא מנהל.
+businessMiddleware – מוודא שהמשתמש הוא עסקי.
+📝 בדיקות ידניות
+ניתן לבדוק את ה-API באמצעות Postman או כלי דומה:
+
+הרשמה והתחברות:
+בצעו בקשת POST ל-/users/register עם הפרטים הנדרשים.
+התחברו עם בקשת POST ל-/users/login וקבלו טוקן.
+בדיקת נקודות קצה מוגנות:
+הוסיפו כותרת x-auth-token עם הטוקן שקיבלתם.
+בדקו נקודות קצה כגון /users/profile ו-/cards/.
+בדיקת הרשאות:
+נסו לגשת לנקודות קצה המוגנות למנהלים עם משתמש רגיל וודאו שהגישה נחסמת.
+📫 יצירת קשר
+לשאלות, הערות או בדיקות, ניתן לפנות אל: Email: galdvash59@gmail.com
+
+ProjectNode פותח על ידי Gal Dvash. תודה על ההתעניינות ובהצלחה!
+
+Copy
